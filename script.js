@@ -3,13 +3,25 @@
 let playerWins = 0;
 // SET computerWins to 0
 let computerWins = 0;
-// - SET playerChoice to getPlayerChoice
-let playerChoice = getPlayerChoice();
-// - SET computerChoice to getComputerChoice
-let computerChoice = getComputerChoice();
-// - CALL playRound with playerChoice and computerChoice
-playRound(playerChoice, computerChoice);
-// - PRINT winnerMessage
+let playerChoice = "";
+let computerChoice = "";
+// Play five rounds
+for (let i = 0; i < 5; i++) {
+  // - SET playerChoice to getPlayerChoice
+  playerChoice = getPlayerChoice();
+  // - SET computerChoice to getComputerChoice
+  computerChoice = getComputerChoice();
+  // - CALL playRound with playerChoice and computerChoice
+  playRound(playerChoice, computerChoice);
+}
+// PRINT winner
+if (playerWins > computerWins) {
+  console.log("Player wins!");
+} else if (playerWins < computerWins) {
+  console.log("Computer wins!");
+} else {
+  console.log("Nobody wins!");
+}
 
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3);
@@ -47,11 +59,9 @@ function playRound(playerChoice, computerChoice) {
   ) {
     console.log(`You lose! ${computerChoice} beats ${playerChoice}`);
     computerWins++;
-  }
-  else if (playerChoice === computerChoice) {
+  } else if (playerChoice === computerChoice) {
     console.log("DRAW!");
-  }
-  else {
+  } else {
     console.log(`You win! ${playerChoice} beats ${computerChoice}`);
     playerWins++;
   }
