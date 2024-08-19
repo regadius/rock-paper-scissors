@@ -6,12 +6,23 @@ let computerWins = 0;
 // - SET playerChoice to getPlayerChoice
 let playerChoice = getPlayerChoice();
 // - SET computerChoice to getComputerChoice
-// let computerChoice = getComputerChoice();
+let computerChoice = getComputerChoice();
 // - CALL playRound with playerChoice and computerChoice
+playRound(playerChoice, computerChoice);
 // - PRINT winnerMessage
 
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3);
+  switch (randomNumber) {
+    case 0:
+      return "rock";
+    case 1:
+      return "paper";
+    case 2:
+      return "scissors";
+    default:
+      console.log("Error");
+  }
   return randomNumber;
 }
 function getPlayerChoice() {
@@ -27,4 +38,21 @@ function getPlayerChoice() {
       return playerChoice;
     }
   } while (keepGoing);
+}
+function playRound(playerChoice, computerChoice) {
+  if (
+    (playerChoice === "rock" && computerChoice === "paper") ||
+    (playerChoice == "paper" && computerChoice === "scissors") ||
+    (playerChoice === "scissors" && computerChoice === "rock")
+  ) {
+    console.log(`You lose! ${computerChoice} beats ${playerChoice}`);
+    computerWins++;
+  }
+  else if (playerChoice === computerChoice) {
+    console.log("DRAW!");
+  }
+  else {
+    console.log(`You win! ${playerChoice} beats ${computerChoice}`);
+    playerWins++;
+  }
 }
